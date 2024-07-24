@@ -3,13 +3,13 @@ provider "azurerm" {
 }
 
 module "resource_group" {
-  source   = "../resource_group"
+  source   = "./resource_group"
   name     = "my-resource-group"
   location = "East US"
 }
 
 module "subnet" {
-  source               = "../subnet"
+  source               = "./subnet"
   name                 = "my-subnet"
   resource_group_name  = module.resource_group.resource_group_name
   virtual_network_name = "my-vnet"
@@ -29,7 +29,7 @@ resource "azurerm_network_interface" "nic" {
 }
 
 module "virtual_machine" {
-  source               = "../virtual_machine"
+  source               = "./virtual_machine"
   name                 = "my-vm"
   location             = module.resource_group.resource_group_location
   resource_group_name  = module.resource_group.resource_group_name
