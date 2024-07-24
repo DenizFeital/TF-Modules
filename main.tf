@@ -4,8 +4,8 @@ provider "azurerm" {
 
 module "resource_group" {
   source   = "./resource_group"
-  name     = resource_group_name
-  location = resource_group_location
+  name     = var.resource_group_name
+  location = var.resource_group_location
 }
 
 module "subnet" {
