@@ -5,13 +5,13 @@ provider "azurerm" {
 
 module "resource_group" {
   source   = "./resource_group"
-  name     = va.resource_group_name
+  name     = var.resource_group_name
   location = var.resource_group_location
 }
 module "subnet" {
   source               = "./subnet"
   name                 = var.subnet_name
-  resource_group_location = location
+  resource_group_location = var.resource_group_location
   resource_group_name  = module.resource_group.resource_group_name
   virtual_network_name = var.virtual_network_name
   address_prefixes     = var.subnet_address_prefixes
