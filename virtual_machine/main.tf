@@ -1,8 +1,8 @@
 # Create virtual machine
 resource "azurerm_windows_virtual_machine" "main" {
-  name                  = "${prefix}-vm"
-  admin_username        = "azureuser"
-  admin_password        = mypassword
+  name                  = "dfa-vm"
+  admin_username        = var.admin_username
+  admin_password        = var.mypassword
   location              = var.resource_group_location
   resource_group_name   = var.resource_group_name
   network_interface_ids = var.nic_name.id
