@@ -1,31 +1,23 @@
-resource "azurerm_virtual_machine" "vm" {
-  name                  = var.name
-  location              = var.location
-  resource_group_name   = var.resource_group_name
-  network_interface_ids = [var.network_interface_id]
-  vm_size               = var.vm_size
+# Create virtual machine
+resource "azurerm_windows_virtual_machine" "main" {
+  name                  = "${prefix}-vm"
+  admin_username        = "azureuser"
+  admin_password        = "${mypassword}"
+  location              = azurerm_resource_group.rg.location
+  resource_group_name   = azurerm_resource_group.rg.name
+  network_interface_ids = [azurerm_network_interface.my_terraform_nic.id]
+  size                  = "Standard_DS1_v2"
 
-  storage_os_disk {
-    name              = "${var.name}_os_disk"
-    caching           = "ReadWrite"
-    create_option     = "FromImage"
-    managed_disk_type = "Standard_LRS"
+  os_disk {
+    name                 = "${prefix}-Disk"
+    caching              = "ReadWrite"
+    storage_account_type = "Premium_LRS"
   }
 
-  storage_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "18.04-LTS"
+  source_image_reference {
+    publisher = "MicrosoftWindowsServer"
+    offer     = "WindowsServer"
+    sku       = "2022-datacenter-azure-edition"
     version   = "latest"
-  }
-
-  os_profile {
-    computer_name  = var.name
-    admin_username = var.admin_username
-    admin_password = var.admin_password
-  }
-
-  os_profile_linux_config {
-    disable_password_authentication = false
   }
 }

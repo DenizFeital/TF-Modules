@@ -42,9 +42,13 @@ variable "admin_username" {
   description = "The admin username for the VM"
   type        = string
 }
-
-variable "admin_password" {
-  description = "The admin password for the VM"
+variable "prefix" {
+  description = "Prefix of the resource name"
+  type        = string
+  sensitive   = true
+}
+variable "mypassword" {
+  description = "Password for the virtual machine user admin"
   type        = string
   sensitive   = true
 }

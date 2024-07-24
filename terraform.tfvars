@@ -1,4 +1,4 @@
-resource_group_name        = "my-resource-group"
+resource_group_name        = "DFA-TF"
 resource_group_location    = "East US"
 subnet_name                = "my-subnet"
 virtual_network_name       = "my-vnet"
@@ -6,5 +6,6 @@ subnet_address_prefixes    = ["10.0.1.0/24"]
 nic_name                   = "my-nic"
 vm_name                    = "my-vm"
 vm_size                    = "Standard_DS1_v2"
+prefix                     = "dfa-tf"
 admin_username             = "adminuser"
-admin_password             = "Password1234!"
+mypassword                 = "Password@1500"
