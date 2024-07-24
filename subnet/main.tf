@@ -9,7 +9,7 @@ resource "azurerm_virtual_network" "my_terraform_network" {
 # Create subnet
 resource "azurerm_subnet" "my_terraform_subnet" {
   name                 = "subnet-sub"
-  resource_group_name  = var.azurerm_resource_group.rg.name
+  resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.my_terraform_network.name
   address_prefixes     = ["10.0.1.0/24"]
 }
@@ -22,7 +22,7 @@ resource "azurerm_public_ip" "my_terraform_public_ip" {
 }
 # Create Network Security Group and rules
 resource "azurerm_network_security_group" "my_terraform_nsg" {
-  name                = prefix+"-nsg"
+  name                = "network-sec-nsg"
   location            = var.resource_group_location
   resource_group_name = var.resource_group_name
 
