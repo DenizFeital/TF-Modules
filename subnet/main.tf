@@ -42,8 +42,7 @@ resource "azurerm_network_security_group" "my_terraform_nsg" {
 resource "azurerm_network_interface" "my_terraform_nic" {
   name                = "myterraform-nic"
   location            = var.resource_group_location
-  resource_group_name = var.azurerm_resource_group.rg.name
-
+  resource_group_name = var.resource_group_name
   ip_configuration {
     name                          = "dfa-ip-conf"
     subnet_id                     = azurerm_subnet.my_terraform_subnet.id
