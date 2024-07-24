@@ -4,8 +4,8 @@ provider "azurerm" {
 
 module "resource_group" {
   source   = "./resource_group"
-  name     = var.resource_group_name
-  location = var.resource_group_location
+  name     = resource_group_name
+  location = resource_group_location
 }
 
 module "subnet" {
@@ -18,8 +18,8 @@ module "subnet" {
 module "virtual_machine" {
   source               = "./virtual_machine"
   name                 = var.vm_name
-  location             = module.resource_group.resource_group_location
-  resource_group_name  = module.resource_group.resource_group_name
+  location             = resource_group_location
+  resource_group_name  = resource_group_name
   network_interface_id = azurerm_network_interface.nic.id
   vm_size              = var.vm_size
   admin_username       = var.admin_username
