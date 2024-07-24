@@ -4,20 +4,20 @@ provider "azurerm" {
 
 module "resource_group" {
   source   = "./resource_group"
-  name     = "my-resource-group"
-  location = "East US"
+  name     = var.resource_group_name
+  location = var.resource_group_location
 }
 
 module "subnet" {
   source               = "./subnet"
-  name                 = "my-subnet"
+  name                 = var.subnet_name
   resource_group_name  = module.resource_group.resource_group_name
-  virtual_network_name = "my-vnet"
-  address_prefixes     = ["10.0.1.0/24"]
+  virtual_network_name = var.virtual_network_name
+  address_prefixes     = var.subnet_address_prefixes
 }
 
 resource "azurerm_network_interface" "nic" {
-  name                = "my-nic"
+  name                = var.nic_name
   location            = module.resource_group.resource_group_location
   resource_group_name = module.resource_group.resource_group_name
 
@@ -30,11 +30,11 @@ resource "azurerm_network_interface" "nic" {
 
 module "virtual_machine" {
   source               = "./virtual_machine"
-  name                 = "my-vm"
+  name                 = var.vm_name
   location             = module.resource_group.resource_group_location
   resource_group_name  = module.resource_group.resource_group_name
   network_interface_id = azurerm_network_interface.nic.id
-  vm_size              = "Standard_DS1_v2"
-  admin_username       = "adminuser"
-  admin_password       = "Password1234!"
+  vm_size              = var.vm_size
+  admin_username       = var.admin_username
+  admin_password       = var.admin_password
 }
