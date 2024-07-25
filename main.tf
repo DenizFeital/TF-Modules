@@ -25,5 +25,5 @@ module "virtual_machine" {
   vm_size              = var.vm_size
   admin_username       = var.admin_username
   admin_password       = var.mypassword
-  subnet_id            = var.subnet_id
+  subnet_id           = var.azurerm_subnet.main.id
 }
