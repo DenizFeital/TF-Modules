@@ -7,6 +7,7 @@ module "resource_group" {
   source   = "./resource_group"
   name     = var.resource_group_name
   location = var.resource_group_location
+  subnet_id = "1"
 }
 module "subnet" {
   source               = "./subnet"
@@ -15,6 +16,7 @@ module "subnet" {
   resource_group_name  = module.resource_group.resource_group_name
   virtual_network_name = var.virtual_network_name
   address_prefixes     = var.subnet_address_prefixes
+  subnet_id = "1"
 }
 module "virtual_machine" {
   source               = "./virtual_machine"
