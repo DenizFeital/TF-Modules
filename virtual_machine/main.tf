@@ -4,8 +4,8 @@ resource "azurerm_windows_virtual_machine" "main" {
   name                  = "DFA-vm"
   admin_username        = var.admin_username
   admin_password        = "Password@1650"
-  location              = azurerm_resource_group.rg.location
-  resource_group_name   = azurerm_resource_group.rg.name
+  location              = "East-US"
+  resource_group_name   = var.resource_group_name
   network_interface_ids = "1"
   size                  = "Standard_DS1_v2"
 
