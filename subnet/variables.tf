@@ -22,3 +22,7 @@ variable "address_prefixes" {
   description = "The address prefixes for the subnet"
   type        = list(string)
 }
+variable "subnet_id" {
+  description = "The ID of the subnet to which the network interface will be connected."
+  type        = string
+}
