@@ -6,7 +6,7 @@ resource "azurerm_windows_virtual_machine" "main" {
   admin_password        = "Password@1650"
   location              = "East-US"
   resource_group_name   = var.resource_group_name
-  network_interface_ids = azurerm_windows_virtual_machine.main.id
+  network_interface_ids = var.azurerm_windows_virtual_machine.main.id
   size                  = "Standard_DS1_v2"
 
   os_disk {
