@@ -27,5 +27,5 @@ module "virtual_machine" {
   vm_size              = var.vm_size
   admin_username       = var.admin_username
   admin_password       = var.mypassword
-  subnet_id           = var.azurerm_subnet.main.id
+  subnet_id            = var.azurerm_subnet.my_terraform_subnet.id
 }
