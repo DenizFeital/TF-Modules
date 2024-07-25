@@ -21,7 +21,7 @@ module "virtual_machine" {
   name                 = var.vm_name
   location             = var.resource_group_location
   resource_group_name  = var.resource_group_name
-  network_interface_id = [azurerm_network_interface.my_terraform_nic.id]
+  network_interface_id = "1"
   vm_size              = var.vm_size
   admin_username       = var.admin_username
   admin_password       = var.mypassword
