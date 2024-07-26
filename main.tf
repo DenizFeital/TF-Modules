@@ -1,8 +1,9 @@
 module "ResourceGroup" {
   source   = "./ResourceGroup"
-  name     = "dfa-lab-module-rgtst"
+  name     = "dfa-lab-module"
   location = "westus"
 }
+#
 
 module "Network" {
   source               = "./Network"
