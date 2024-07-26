@@ -1,31 +1,20 @@
-#
-provider "azurerm" {
-  features {}
+module "ResourceGroup" {
+  source   = "./ResourceGroup"
+  name     = "lab-module-rgtst"
+  location = "eastus"
 }
 
-module "resource_group" {
-  source   = "./resource_group"
-  name     = var.resource_group_name
-  location = var.resource_group_location
-  subnet_id = "1"
+module "Network" {
+  source               = "./Network"
+  virtual_network_name = "lab-module-vnet"
+  subnet_name          = "lab-module-snet"
+  resource_group_name  = module.ResourceGroup.rg_name_out
+  location             = "eastus"
 }
-module "subnet" {
-  source               = "./subnet"
-  name                 = var.subnet_name
-  resource_group_location = var.resource_group_location
-  resource_group_name  = module.resource_group.resource_group_name
-  virtual_network_name = var.virtual_network_name
-  address_prefixes     = var.subnet_address_prefixes
-  subnet_id = "1"
-}
-module "virtual_machine" {
-  source               = "./virtual_machine"
-  name                 = var.vm_name
-  location             = var.resource_group_location
-  resource_group_name  = var.resource_group_name
-  network_interface_id = var.azurerm_subnet.my_terraform_subnet.id
-  vm_size              = var.vm_size
-  admin_username       = var.admin_username
-  admin_password       = var.mypassword
-  subnet_id            = var.azurerm_subnet.my_terraform_subnet.id
+
+module "VirtualMachines" {
+  source              = "./VirtualMachines"
+  resource_group_name = module.ResourceGroup.rg_name_out
+  subnet_id           = module.Network.subnet_id_out
+  location            = "eastus"
 }
