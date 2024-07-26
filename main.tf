@@ -1,6 +1,6 @@
 module "ResourceGroup" {
   source   = "./ResourceGroup"
-  name     = "lab-module-rgtst"
+  name     = "dfa-lab-module-rgtst"
   location = "eastus"
 }
 
